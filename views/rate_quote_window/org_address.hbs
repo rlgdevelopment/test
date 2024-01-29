@@ -1,0 +1,262 @@
+<nav class="navbar px-2 pt-2 pb-2 border-bottom border-top">
+  <div class="container-fluid d-flex align-items-stretch align-items-center justify-content-start">
+    <a class="navbar-item" href="./rate-quote-window?{{query_path}}">
+      <p class="mb-0">
+        <i class="my-nav-item-icon bi bi-house-door-fill black align-self-center" style="cursor:pointer;"></i>
+      </p>
+    </a>
+<!--     <a class="my-nav-item mx-4 text-dark" href="./rate-customer?{{query_path}}">
+      <p class="mb-0">
+        Rate Customer
+      </p>
+    </a>
+    <a class="my-nav-item text-dark" href="./quote-customer?{{query_path}}">
+      <p class="mb-0">
+        Quote Customer
+      </p>
+    </a> -->
+  </div>
+</nav>
+<div class="px-4 pt-2 pb-2">
+  <div>
+    <div class="row mt-2  mb-1">
+      <div class="col-12">
+        <h6>
+          Add Address to {{deal_org}}
+        </h6>
+      </div>
+    </div>
+    <form
+      action="./org-update?{{query_path}}"
+      method="post"
+      id="create-quote"
+    >
+      <div>
+        <div class="p-3 bg-custom text-dark rounded">
+          <div class="row mt-2">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="addressSearch" class="form-label">Search Address<span
+                    class="required"
+                  >*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="addressSearch"
+                  name="addressSearch"
+                  placeholder="Enter Address"
+                  required
+                />
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="street_number" class="form-label">Street Number<span
+                      class="required"
+                    >*</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="street_number"
+                    name="street_number"
+                    placeholder="Enter Address"
+                    readonly
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="route" class="form-label">Route<span
+                      class="required"
+                    >*</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="route"
+                    name="route"
+                    placeholder="Enter Address"
+                    readonly
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="locality" class="form-label">City<span
+                      class="required"
+                    >*</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="locality"
+                    name="locality"
+                    placeholder="Enter Address"
+                    readonly
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label
+                    for="administrative_area_level_1"
+                    class="form-label"
+                  >State<span class="required">*</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="administrative_area_level_1"
+                    name="administrative_area_level_1"
+                    placeholder="Enter Address"
+                    readonly
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="country" class="form-label">Zip Code<span
+                      class="required"
+                    >*</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="country"
+                    name="country"
+                    placeholder="Enter Address"
+                    readonly
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="postal_code" class="form-label">Country<span
+                      class="required"
+                    >*</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="postal_code"
+                    name="postal_code"
+                    placeholder="Enter Address"
+                    readonly
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="row mt-2">
+              <div class="col-12">
+                <input
+                  style="width:100%"
+                  id="submit-button"
+                  name="submit"
+                  type="submit"
+                  class="btn btn-primary btn-md submit-button"
+                  value="Continue"
+                />
+              </div>
+            </div>
+        <input
+          type="hidden"
+          class="form-control"
+          id="orgId"
+          name="orgId"
+          value="{{org_id}}"
+        />
+        <input
+          type="hidden"
+          class="form-control"
+          id="org"
+          name="org"
+          value="{{deal_org}}"
+        />
+        <input
+          type="hidden"
+          class="form-control"
+          id="personId"
+          name="personId"
+          value="{{person_id}}"
+        />
+        <input
+          type="hidden"
+          class="form-control"
+          id="person"
+          name="person"
+          value="{{deal_person}}"
+        />
+        <input
+          type="hidden"
+          class="form-control"
+          id="deal_id"
+          name="deal_id"
+          value="{{deal_id}}"
+        />
+        <input
+          type="hidden"
+          class="form-control"
+          id="deal_title"
+          name="deal_title"
+          value="{{deal_title}}"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="/js/create_address.js"></script>
+
+<script>
+  var placeSearch, autocomplete;
+  var componentForm = {
+    street_number: "short_name",
+    route: "long_name",
+    locality: "long_name",
+    administrative_area_level_1: "short_name",
+    country: "long_name",
+    postal_code: "short_name",
+  };
+
+  function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById("addressSearch"),
+      { types: ["geocode"] }
+    );
+    autocomplete.addListener("place_changed", fillInAddress);
+  }
+
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
+    }
+
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById(addressType).value = val;
+      }
+    }
+  }
+</script>
+
+<script>
+  (async function() { const sdk = await new AppExtensionsSDK().initialize();
+  await sdk.execute(AppExtensionsSDK.Command.RESIZE, { width: 800, height: 500 }); })();
+</script>

@@ -1,0 +1,279 @@
+<nav class="navbar px-2 pt-2 pb-2 border-bottom border-top">
+  <div class="container-fluid d-flex align-items-stretch align-items-center justify-content-start">
+    <a class="navbar-item" href="./rate-quote-window?{{query_path}}">
+      <p class="mb-0">
+        <i class="my-nav-item-icon bi bi-house-door-fill black align-self-center" style="cursor:pointer;"></i>
+      </p>
+    </a>
+<!--     <a class="my-nav-item mx-4 text-dark" href="./rate-customer?{{query_path}}">
+      <p class="mb-0">
+        Quick Rate
+      </p>
+    </a>
+    <a class="my-nav-item text-dark" href="./quote-customer?{{query_path}}">
+      <p class="mb-0">
+        Formal Quote
+      </p>
+    </a> -->
+  </div>
+</nav>
+
+<div class="px-4 pt-2 pb-2">
+  <div>
+    <form action="./rlc-lead?{{query_path}}" method="post" id="rlc-rate" onsubmit="submitForm(event)" novalidate>
+      <div>
+<!--         <div class="p-3 bg-custom text-dark rounded">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="orgSearch" class="form-label">Organization</label>
+                <input type="text" class="form-control" id="orgSearch" name="org" placeholder="Type to Search">
+                <div class="spinner-container-org" id="orgSearchSpinner"></div>
+              </div>
+            </div>
+          </div>
+            <div class="row mt-2">
+              <div class="col-12">
+              <div class="form-group">
+                <label for="personSearch" class="form-label">Person</label>
+                <input class="form-control" id="personSearch" name="person" placeholder="Type to Search">
+                <div class="spinner-container-person" id="personSearchSpinner"></div>
+              </div>
+            </div>
+            </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="personPhone" class="form-label">Person Phone</label>
+                <input class="form-control" id="personPhone" name="person_phone" placeholder="">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="personEmail" class="form-label">Person Email</label>
+                <input type="email" class="form-control" id="personEmail" name="person_email" placeholder="">
+              </div>
+            </div>
+          </div>
+        </div> -->
+       <!-- Zip and Dates --> 
+       <div class="mt-2 p-3 bg-custom text-dark rounded"> 
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="pickupDate" class="form-label">Pickup Date<span class="required">*</span></label><br/>
+              <input class="form-control" type="text" id="pickupDate" name="pick_date" placeholder="mm/dd/yyyy" required/>
+            </div>
+          </div>
+<!--           <div class="col-6">
+            <div class="form-group">
+              <label for="deliveryDate" class="form-label">Delivery Date<span class="required">*</span></label><br/>
+              <input class="form-control" type="text" id="deliveryDate" name="delivery_date" placeholder="mm/dd/yyyy" required/>
+            </div>
+          </div> -->
+        </div>
+        <div class="row mt-2">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="originZip" class="form-label">Origin<span class="required">* </span><span id="orginZipSearchSpinner"></span></label>
+              <input  class="form-control" id="originZip" name="origin" placeholder="Type Zip code to Search" required>
+              <div id="originZip_cityFeedback" class="invalid-feedback">
+                Please make a selection from the dropdown.
+              </div>
+              <div class="valid-feedback">
+                Valid City, State and Zip Code Found
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="destinationZip" class="form-label">Destination<span class="required">* </span><span id="destinationZipSearchSpinner"></span></label>
+              <input  class="form-control" id="destinationZip" name="destination" placeholder="Type Zip code to Search" required>
+              <div id="destinationZip_cityFeedback" class="invalid-feedback">
+                Please make a selection from the dropdown.
+              </div>
+              <div class="valid-feedback">
+                Valid City, State and Zip Code Found
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <!-- value -->
+<!--       <div class="mt-2 p-3 bg-custom text-dark rounded"> 
+        <div class="row">
+          <div class="col-12">
+            <label for="rateValue" class="form-label">Rate<span class="required">*</span></label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+              </div>
+              <input id="rateValue" name="value" type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+            </div>
+          </div>
+        </div>
+      </div>  -->
+        
+      <!--    Items    -->
+      <div class="mt-2 p-3 bg-custom text-dark rounded"> 
+        <div id="itemRows">
+          <div class="row mt-2 itemRow">
+            <div class="col-md-3">
+              <label class="form-label" for="items[0][class]">Class<span class="required">*</span></label>
+              <select class="form-select form-select-md" aria-label="small select example" name="items[0][class]" required>
+                <option selected disabled value="">select</option>
+                <option value="50.0">50.0</option>
+                <option value="55.0">55.0</option>
+                <option value="60.0">60.0</option>
+                <option value="65.0">65.0</option>
+                <option value="70.0">70.0</option>
+                <option value="77.5">77.5</option>
+                <option value="85.0">85.0</option>
+                <option value="92.5">92.5</option>
+                <option value="100.0">100.0</option>
+                <option value="110.0">110.0</option>
+                <option value="125.0">125.0</option>
+                <option value="150.0">150.0</option>
+                <option value="175.0">175.0</option>
+                <option value="200.0">200.0</option>
+                <option value="250.0">250.0</option>
+                <option value="300.0">300.0</option>
+                <option value="400.0">400.0</option>
+                <option value="500.0">500.0</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label" for="items[0][weight]">Weight (lb)<span class="required">*</span></label>
+              <input type="number" class="form-control" placeholder="0" name="items[0][weight]" min="1" max="19999" required>
+            </div>
+            <div class="col-md-3 form-check">
+              <div>&nbsp;</div>
+              <label class="form-check-label" for="items[0][dimensions]">Dimensions</label>
+              <input type="checkbox" class="form-check-input dimensionsCheckbox" name="items[0][dimensions]" data-row="0">
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <button type="button" class="btn btn-primary" id="addItem">Add Item</button>
+        </div>
+      </div>
+        
+      <div class="mt-2 p-3 bg-custom text-dark rounded" id="accessorials"> 
+        <div class="row">
+          <div class="col-md-4">
+            <h6 class="column-header">Origin Options</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="OriginLiftgate">
+              <label class="form-check-label" for="accessorials[OriginLiftgate]">
+                Origin Liftgate
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="LimitedAccessPickup">
+              <label class="form-check-label" for="accessorials[LimitedAccessPickup]">
+                Residential/Limited Access Pickup
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="InsidePickup">
+              <label class="form-check-label" for="InsidePickup">
+                Inside Pickup
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <h6 class="column-header">Destination Options</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="DestinationLiftgate">
+              <label class="form-check-label" for="DestinationLiftgate">
+                Destination Liftgate
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="LimitedAccessDelivery">
+              <label class="form-check-label" for="LimitedAccessDelivery">
+                Residential/Limited Access Delivery
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="InsideDelivery">
+              <label class="form-check-label" for="InsideDelivery">
+                Inside Delivery
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="DeliveryAppointment">
+              <label class="form-check-label" for="DeliveryAppointment">
+                Delivery Appointment
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="SortAndSegregate">
+              <label class="form-check-label" for="SortAndSegregate">
+                Sort And Segregate
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <h6 class="column-header">Shipment Options</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="Freezable">
+              <label class="form-check-label" for="Freezable">
+                Freezable
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="Hazmat">
+              <label class="form-check-label" for="Hazmat">
+                Hazmat
+              </label>
+            </div>
+<!--             <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="accessorials[]" value="OverDimension" id="OverDimension">
+              <label class="form-check-label" for="OverDimension">
+                Over Dimension
+              </label>
+            </div> -->
+          </div>
+        </div>
+      </div>
+            
+      <div class="row mt-2">
+        <div class="col-12">
+          <button id="submit-button" type="submit" class="btn btn-primary btn-md submit-button w-100">
+            <span>Create Rate</span>
+          </button>
+        </div>
+        <div class="col-12">
+            
+        </div>
+      </div>  
+        <input type="hidden" class="form-control" id="originZipInput" name="originZipInput">
+        <input type="hidden" class="form-control" id="destinationZipInput" name="destinationZipInput">
+        <input type="hidden" class="form-control" id="originCity" name="originCity">
+        <input type="hidden" class="form-control" id="originState" name="originState">
+        <input type="hidden" class="form-control" id="originZipCode" name="originZipCode"> 
+        <input type="hidden" class="form-control" id="destinationCity" name="destinationCity">
+        <input type="hidden" class="form-control" id="destinationState" name="destinationState">
+        <input type="hidden" class="form-control" id="destinationZipCode" name="destinationZipCode">
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/rlc_rate.js"></script>
+
+<script>
+  // Initialize App Extensions SDK (async function () { const sdk = await new
+  (async function() { 
+    const sdk = await new AppExtensionsSDK().initialize()
+    if (window.screen.height < 900) {
+      await sdk.execute(AppExtensionsSDK.Command.RESIZE, {width: 800, height: 500})
+    }
+    else {
+      await sdk.execute(AppExtensionsSDK.Command.RESIZE, {width: 800, height: 700})
+    }
+  })()
+</script>

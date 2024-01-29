@@ -1,0 +1,149 @@
+<nav class="navbar px-2 pt-2 pb-2 border-bottom border-top">
+  <div class="container-fluid d-flex align-items-stretch align-items-center justify-content-start">
+    <a class="navbar-item" href="./rate-quote-window?{{query_path}}">
+      <p class="mb-0">
+        <i class="my-nav-item-icon bi bi-house-door-fill black align-self-center" style="cursor:pointer;"></i>
+      </p>
+    </a>
+<!--     <a class="my-nav-item mx-4 text-dark" href="./rate-customer?{{query_path}}">
+      <p class="mb-0">
+        Quick Rate
+      </p>
+    </a>
+    <a class="my-nav-item text-dark" href="./quote-customer?{{query_path}}">
+      <p class="mb-0">
+        Formal Quote
+      </p>
+    </a> -->
+  </div>
+</nav>
+<div class="px-4 pt-2 pb-2">
+  <div class="mt-2 p-3 bg-custom text-dark rounded">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Origin</h3>
+        <p>
+          {{origin.City}}, {{origin.StateOrProvince}} {{origin.ZipOrPostalCode}}, {{origin.CountryCode}}
+        </p>
+        <h4>
+          Service Center
+        </h4>
+        <p>
+          {{originServiceCenter.Address1}}<br>
+          {{#if originServiceCenter.Address2}} {{originServiceCenter.Address2}}<br> {{/if}}
+          {{originServiceCenter.Location}} ({{originServiceCenter.Code}}) {{originServiceCenter.ZipCode}}<br>
+          <span class="fw-bold">Phone: </span>{{originServiceCenter.Phone}}
+        </p>
+      </div>
+      <div class="col-md-6">
+        <h3>Destination</h3>
+        <p>
+          {{destination.City}}, {{destination.StateOrProvince}} {{destination.ZipOrPostalCode}}, {{destination.CountryCode}}
+        </p>
+        <h4>
+          Service Center
+        </h4>
+        <p>
+          {{destinationServiceCenter.Address1}}<br>
+          {{#if destinationServiceCenter.Address2}} {{destinationServiceCenter.Address2}}<br> {{/if}}
+          {{destinationServiceCenter.Location}} ({{destinationServiceCenter.Code}}) {{destinationServiceCenter.ZipCode}}<br>
+          <span class="fw-bold">Phone: </span>{{destinationServiceCenter.Phone}}
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-2 p-3 bg-custom text-dark rounded">
+    <div class="row">
+      {{#each serviceLevels}}
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{this.Name}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{this.NetCharge}}</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Service Days: </strong>{{this.ServiceDays}} {{#if this.HourlyWindow}} ({{this.HourlyWindow.Start}} - {{this.HourlyWindow.End}}) {{/if}}</li>
+            <li class="list-group-item"><strong>Quote Number: </strong>{{this.QuoteNumber}}</li>
+          </ul>
+          <div class="card-body">
+            <form action="./rlc-deal-select?{{../query_path}}" method="post" id="rate-select" onsubmit="submitForm(event)">
+              <div class="row g-3 align-items-center mb-3">
+                <div class="col-auto">
+                  <label class="col-form-label"><strong>Rate</strong></label>
+                </div>
+                <div class="col-auto">
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" class="form-control" name="rate" value="{{this.rate}}">
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100" id="submit-button">
+                Select
+              </button>
+              <input type="hidden" class="form-control" name="netCharge" value="{{this.NetCharge}}">
+              <input type="hidden" class="form-control" name="rateQuote" value="{{../rateQuote}}">
+              <input type="hidden" class="form-control" name="origin" value="{{../originInput}}">
+              <input type="hidden" class="form-control" name="destination" value="{{../destinationInput}}">
+              <input type="hidden" class="form-control" name="originZip" value="{{../originZip}}">
+              <input type="hidden" class="form-control" name="destinationZip" value="{{../destinationZip}}">
+            </form>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="mt-2 p-3 bg-custom text-dark rounded">
+    <div class="row">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Weight</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Charge</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each charges}}
+          <tr>
+            <td>{{this.Title}}</td>
+            <td>{{this.Weight}}</td>
+            <td>{{this.Rate}}</td>
+            <td>{{this.Amount}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- <script>
+  function submitForm(event) {
+  event.preventDefault()
+    
+  console.log(event)
+
+  var myForm = document.getElementById('rate-select')
+  var submitButton = document.getElementById('submit-button')
+  
+  submitButton.disabled = true
+  submitButton.innerHTML = `
+    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+    <span>Loading...</span>
+  `
+  
+  myForm.submit()
+}
+</script> -->
+
+<script>
+  (async function() { const sdk = await new AppExtensionsSDK().initialize();
+  await sdk.execute(AppExtensionsSDK.Command.RESIZE, { width: 800, height: 700 }); 
+   })();
+
+</script>

@@ -1,0 +1,90 @@
+<nav class="navbar px-2 pt-2 pb-2 border-bottom border-top">
+  <div class="container-fluid d-flex align-items-stretch align-items-center justify-content-start">
+    <a class="navbar-item" href="./rate-quote-window?{{query_path}}">
+      <p class="mb-0">
+        <i class="my-nav-item-icon bi bi-house-door-fill black align-self-center" style="cursor:pointer;"></i>
+      </p>
+    </a>
+<!--     <a class="my-nav-item mx-4 text-dark" href="./rate-customer?{{query_path}}">
+      <p class="mb-0">
+        Quick Rate
+      </p>
+    </a>
+    <a class="my-nav-item text-dark" href="./quote-customer?{{query_path}}">
+      <p class="mb-0">
+        Formal Quote
+      </p>
+    </a> -->
+  </div>
+</nav>
+<div class="container mt-2">
+  <div>
+    <div class="">
+        <div class="row">
+          <div class="col-12 bg-custom p-4 rounded">
+            <p class="text-success text-center custom-text">
+              <strong>
+                Deal created, one moment while you are redirected to create the order...</strong>
+            </p>
+            <p class="text-center custom-text">
+              <em>If you are not redirected in 5 seconds please click Continue Quote</em>
+            </p>
+            <div class="card">
+              <p class="card-header custom-text"><strong>Deal</strong></p>
+              <div class="card-body">
+                <p class="card-title"><strong>{{deal_title}}</strong></p>
+                <p class="card-text">{{deal_org}}&nbsp;<i class="bi bi-box-arrow-up-right icon-12" onclick="OpenOrg()" style="cursor:pointer;"></i><br/>{{deal_person}}&nbsp;<i class="bi bi-box-arrow-up-right icon-12" onclick="OpenPerson()" style="cursor:pointer;"></i></p>
+                <button onclick="OpenDeal()" class="btn btn-primary btn-sm submit-button" style="width: 100%">Continue Quote</button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Initialize App Extensions SDK
+    (async function () {
+        const sdk = await new AppExtensionsSDK().initialize();
+            if (window.screen.height < 900) {
+              await sdk.execute(AppExtensionsSDK.Command.RESIZE, { width: 800, height: 410 });
+            } else {
+              await sdk.execute(AppExtensionsSDK.Command.RESIZE, { width: 800, height: 410 });
+            }
+      await sdk.execute(AppExtensionsSDK.Command.REDIRECT_TO, { view: 'deals', id: {{deal_id}} });
+      await sdk.execute(AppExtensionsSDK.Command.OPEN_MODAL, {
+        type: AppExtensionsSDK.Modal.CUSTOM_MODAL,
+        action_id: 'b39aa538-8240-46f4-acb5-a1957b3e797e',
+        data: {
+          selectedIds: {{deal_id}}  
+        }
+      });
+    })();
+</script>
+
+<script>
+  async function OpenDeal() {
+    const sdk = await new AppExtensionsSDK().initialize();
+		await sdk.execute(AppExtensionsSDK.Command.REDIRECT_TO, { view: 'deals', id: {{deal_id}} });
+      await sdk.execute(AppExtensionsSDK.Command.OPEN_MODAL, {
+        type: AppExtensionsSDK.Modal.CUSTOM_MODAL,
+        action_id: 'b39aa538-8240-46f4-acb5-a1957b3e797e',
+        data: {
+          selectedIds: {{deal_id}}  
+        }
+      });
+  };
+  
+  async function OpenOrg() {
+    const sdk = await new AppExtensionsSDK().initialize();
+		await sdk.execute(AppExtensionsSDK.Command.REDIRECT_TO, { view: 'organizations', id: {{org_id}} });
+  };
+                      
+  async function OpenPerson() {
+    const sdk = await new AppExtensionsSDK().initialize();
+		await sdk.execute(AppExtensionsSDK.Command.REDIRECT_TO, { view: 'contacts', id: {{person_id}} });
+  };
+</script>
+

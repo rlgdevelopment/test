@@ -1,0 +1,151 @@
+<nav class="navbar px-2 pt-2 pb-2 border-bottom border-top">
+  <div class="container-fluid d-flex align-items-stretch align-items-center justify-content-start">
+    <a class="navbar-item" href="./rate-quote-window?{{query_path}}">
+      <p class="mb-0">
+        <i class="my-nav-item-icon bi bi-house-door-fill black align-self-center" style="cursor:pointer;"></i>
+      </p>
+    </a>
+<!--     <a class="my-nav-item mx-4 text-dark" href="./rate-customer?{{query_path}}">
+      <p class="mb-0">
+        Quick Rate
+      </p>
+    </a>
+    <a class="my-nav-item text-dark" href="./quote-customer?{{query_path}}">
+      <p class="mb-0">
+        Formal Quote
+      </p>
+    </a> -->
+  </div>
+</nav>
+
+<div class="px-4 pt-2 pb-2">
+  <div>
+    <form action="./lead-create?{{query_path}}" method="post" id="create-lead" onsubmit="submitForm(event)" novalidate>
+      <div>
+        <div class="p-3 bg-custom text-dark rounded">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="orgSearch" class="form-label">Organization</label>
+                <input type="text" class="form-control" id="orgSearch" name="org" placeholder="Type to Search">
+                <div class="spinner-container-org" id="orgSearchSpinner"></div>
+              </div>
+            </div>
+          </div>
+            <div class="row mt-2">
+              <div class="col-12">
+              <div class="form-group">
+                <label for="personSearch" class="form-label">Person<span class="required">*</span></label>
+                <input class="form-control" id="personSearch" name="person" placeholder="Type to Search" required>
+                <div class="spinner-container-person" id="personSearchSpinner"></div>
+              </div>
+            </div>
+            </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="personPhone" class="form-label">Person Phone</label>
+                <input class="form-control" id="personPhone" name="person_phone" placeholder="">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="personEmail" class="form-label">Person Email</label>
+                <input type="email" class="form-control" id="personEmail" name="person_email" placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+       <!-- Zip and Dates --> 
+       <div class="mt-2 p-3 bg-custom text-dark rounded"> 
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="pickupDate" class="form-label">Pickup Date<span class="required">*</span></label><br/>
+              <input class="form-control" type="text" id="pickupDate" name="pick_date" placeholder="mm/dd/yyyy" required/>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="deliveryDate" class="form-label">Delivery Date<span class="required">*</span></label><br/>
+              <input class="form-control" type="text" id="deliveryDate" name="delivery_date" placeholder="mm/dd/yyyy" required/>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="originZip" class="form-label">Origin<span class="required">*</span></label>
+              <input  class="form-control" id="originZip" name="origin" placeholder="Type Zip code to Search" required>
+              <div class="spinner-container-orgin-zip" id="orginZipSearchSpinner"></div>
+              <div id="originZip_cityFeedback" class="invalid-feedback">
+                Please make a selection from the dropdown.
+              </div>
+              <div class="valid-feedback">
+                Valid City, State and Zip Code Found
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="destinationZip" class="form-label">Destination<span class="required">*</span></label>
+              <input  class="form-control" id="destinationZip" name="destination" placeholder="Type Zip code to Search" required>
+              <div class="spinner-container-destination-zip" id="destinationZipSearchSpinner"></div>
+              <div id="destinationZip_cityFeedback" class="invalid-feedback">
+                Please make a selection from the dropdown.
+              </div>
+              <div class="valid-feedback">
+                Valid City, State and Zip Code Found
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <!-- value -->
+      <div class="mt-2 p-3 bg-custom text-dark rounded"> 
+        <div class="row">
+          <div class="col-12">
+            <label for="rateValue" class="form-label">Rate<span class="required">*</span></label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+              </div>
+              <input id="rateValue" name="value" type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+            </div>
+          </div>
+        </div>
+      </div>  
+         
+      <div class="row mt-2">
+        <div class="col-12">
+          <button id="submit-button" type="submit" class="btn btn-primary btn-md submit-button w-100">
+            <span>Create Rate</span>
+          </button>
+        </div>
+        <div class="col-12">
+            
+        </div>
+      </div>  
+        <input type="hidden" class="form-control" id="orgId" name="orgId">
+        <input type="hidden" class="form-control" id="personId" name="personId">
+        <input type="hidden" class="form-control" id="originZipInput" name="originZipInput">
+        <input type="hidden" class="form-control" id="destinationZipInput" name="destinationZipInput">
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/create_lead.js"></script>
+
+<script>
+  // Initialize App Extensions SDK (async function () { const sdk = await new
+  (async function() { 
+    const sdk = await new AppExtensionsSDK().initialize()
+    if (window.screen.height < 900) {
+      await sdk.execute(AppExtensionsSDK.Command.RESIZE, {width: 800, height: 700})
+    }
+    else {
+      await sdk.execute(AppExtensionsSDK.Command.RESIZE, {width: 800, height: 700})
+    }
+  })()
+</script>
