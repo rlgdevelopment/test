@@ -1,0 +1,111 @@
+<nav class="navbar px-2 pt-2 pb-2 border-bottom border-top">
+  <div class="container-fluid d-flex align-items-stretch align-items-center justify-content-start">
+    <a class="navbar-item" href="./rate-quote-window?{{query_path}}">
+      <p class="mb-0">
+        <i class="my-nav-item-icon bi bi-house-door-fill black align-self-center" style="cursor:pointer;"></i>
+      </p>
+    </a>
+<!--     <a class="my-nav-item mx-4 text-dark" href="./rate-customer?{{query_path}}">
+      <p class="mb-0">
+        Quick Rate
+      </p>
+    </a>
+    <a class="my-nav-item text-dark" href="./quote-customer?{{query_path}}">
+      <p class="mb-0">
+        Formal Quote
+      </p>
+    </a> -->
+  </div>
+</nav>
+<div class="container mt-2">
+  <div>
+    <div class="">
+        <div class="row">
+          <div class="col-12 bg-custom p-4 rounded">
+            <p class="text-success text-center custom-text">
+              <strong>
+                Rate created
+              </strong>
+            </p>
+            <div class="card">
+              <p class="card-header custom-text"><strong>Rate</strong></p>
+              <div class="card-body">
+                <div class="">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6 class="card-title">{{title}}</h6><br/>
+                      <p class="card-text">
+                        {{#if org_name}}
+                        {{org_name}}&nbsp;<i class="bi bi-box-arrow-up-right icon-12" onclick="OpenOrg()" style="cursor:pointer;"></i>
+                        <br/><br/>
+                        {{/if}}
+                        {{#if person_name}}
+                        {{person_name}}&nbsp;<i class="bi bi-box-arrow-up-right icon-12" onclick="OpenPerson()" style="cursor:pointer;"></i><br/>
+                        {{person_email}}<br/>
+                        {{person_phone}}
+                        {{/if}}
+                      </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <h4 class="card-title text-success text-end">${{value}}</h4>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-6">
+                      <p class="card-text">
+                        <strong>Origin:</strong><br/>
+                        {{pick_up}}
+                        <br/>
+                        {{origin}}
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="card-text">
+                        <strong>Destination:</strong><br/>
+                        {{delivery}}
+                        <br/>
+                        {{destination}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-12">
+                      <button id="modal-test" class="btn btn-primary btn-sm submit-button" style="width:100%" onclick="OpenLead()">View Rate</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+    async function OpenOrg() {
+    const sdk = await new AppExtensionsSDK().initialize();
+		await sdk.execute(AppExtensionsSDK.Command.REDIRECT_TO, { view: 'organizations', id: {{org_id}} });
+  };
+                      
+  async function OpenPerson() {
+    const sdk = await new AppExtensionsSDK().initialize();
+		await sdk.execute(AppExtensionsSDK.Command.REDIRECT_TO, { view: 'contacts', id: {{person_id}} });
+  }; 
+  
+  async function OpenLead() {
+    const sdk = await new AppExtensionsSDK().initialize();
+		await sdk.execute(AppExtensionsSDK.Command.REDIRECT_TO, { view: 'leads', id: '{{lead_id}}' });
+  };                         
+</script>
+<script>
+    // Initialize App Extensions SDK
+    (async function () {
+        const sdk = await new AppExtensionsSDK().initialize();
+             if (window.screen.height < 900) {
+              await sdk.execute(AppExtensionsSDK.Command.RESIZE, { width: 800, height: 535 });
+            } else {
+              await sdk.execute(AppExtensionsSDK.Command.RESIZE, { width: 800, height: 535 });
+            }
+      await sdk.execute(AppExtensionsSDK.Command.REDIRECT_TO, { view: 'leads', id: '{{lead_id}}' });
+    })();
+</script>

@@ -1,0 +1,73 @@
+<div class="container mt-2">
+  <div>
+    <div class="card-body">
+      <div class="row m-auto justify-content-center">
+        <div class="col-6">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Quick Rate
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/ui/rate-customer?{{query_path}}">Truckload</a></li>
+              <li><a class="dropdown-item" href="/ui/rlc-rate-customer-lead?{{query_path}}">RLC LTL</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="dropdown">
+            <button class="btn btn-success dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Formal Quote
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/ui/quote-customer?{{query_path}}">Truckload</a></li>
+              <li><a class="dropdown-item" href="/ui/rlc-rate-customer-deal?{{query_path}}">RLC LTL</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+<!--       <div class="row mt-2">
+        <div class="col-12">
+          <a
+            id="rate2"
+            href="./rate-customer?{{query_path}}"
+            class="btn btn-primary btn-md submit-button"
+            style="width:100%"
+          >Quick Rate</a>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12">
+          <a
+            id="rlcRate"
+            href="./rlc-rate-customer?{{query_path}}"
+            class="btn btn-primary btn-md submit-button"
+            style="width:100%"
+          >RLC LTL Rate</a>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12">
+          <a
+            id="quote"
+            href="./quote-customer?{{query_path}}"
+            class="btn btn-success btn-md submit-button"
+            style="width:100%"
+          >Formal Quote</a>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initialize App Extensions SDK (async function () { const sdk = await new
+  (async function() { 
+    const sdk = await new AppExtensionsSDK().initialize()
+    if (window.screen.height < 900) {
+      await sdk.execute(AppExtensionsSDK.Command.RESIZE, {width: 400, height: 175})
+    }
+    else {
+      await sdk.execute(AppExtensionsSDK.Command.RESIZE, {width: 500, height: 175})
+    }
+  })()
+</script>

@@ -1,0 +1,115 @@
+.container {
+ max-width: 94% !important;
+}
+
+.black, a.black {
+  color: #343a40;
+}
+
+.my-nav-item {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1;
+  text-decoration: none;
+}
+
+.my-nav-item-icon {
+  font-size: 18px;
+}
+
+label {
+  font-size: 14px;
+}
+
+.valid-feedback {
+    font-size: 14px;
+}
+
+.invalid-feedback {
+    font-size: 14px;
+}
+
+.submit-button {
+  font-weight: 600;
+  letter-spacing: 1;
+}
+
+
+.navbar-item {
+  color: #000000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bg-custom {
+  background-color: #f5f5f6;
+}
+.custom-text {
+  font-size: 14px;
+}
+
+.icon-12 {
+    font-size: 12px;
+}
+
+.async-search-container {
+  position: relative;
+}
+
+.async-search-input {
+  width: 100%;
+}
+
+.spinner-container-org {
+  position: absolute;
+  right: 7%;
+  top: 16%;
+  transform: translateY(-50%);
+}
+
+.spinner-container-person {
+  position: absolute;
+  right: 7%;
+  top: 26.5%;
+  transform: translateY(-50%);
+}
+
+.spinner-container-org-quote {
+  position: absolute;
+  right: 7%;
+  top: 29.5%;
+  transform: translateY(-50%);
+}
+
+.spinner-container-person-quote {
+  position: absolute;
+  right: 7%;
+  top: 49.5%;
+  transform: translateY(-50%);
+}
+
+.spinner-container-orgin-zip {
+  position: absolute;
+  right: 53%;
+  top: 63.5%;
+  transform: translateY(-50%);
+}
+
+.spinner-container-destination-zip {
+  position: absolute;
+  right: 7%;
+  top: 63.5%;
+  transform: translateY(-50%);
+}
+
+
+/* Custom CSS for light gray and smaller spinner */
+
+
+.required {
+  color: red;
+}
+
+.flatpickr-wrapper {
+  width: 100% !important;
+}

@@ -1,0 +1,43 @@
+{
+  "name": "docusign-pd-custom-ui-extension",
+  "version": "0.1.0",
+  "description": "A Pipedrive Custom UI app that integrates with Docusign",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "DEBUG=app* node server/server.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "hbs": "^4.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "pipedrive": "^22.3.0",
+    "querystring": "^0.2.1",
+    "sequelize": "^6.35.2",
+    "sqlite3": "^5.1.6",
+    "jquery": "^3.7.1",
+    "bootstrap": "^5.3.2",
+    "vanillajs-datepicker": "^1.3.4",
+    "@pipedrive/app-extensions-sdk": "^0.9.0"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "repository": {
+    "url": "https://github.com/pipedrive/example-apps"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "express",
+    "pipedrive"
+  ],
+  "devDependencies": {
+    "vanillajs-datepicker": "^1.3.4"
+  }
+}

@@ -1,0 +1,83 @@
+<nav class="navbar px-2 pt-2 pb-2 border-bottom border-top">
+  <div class="container-fluid d-flex align-items-stretch align-items-center justify-content-start">
+    <a class="navbar-item" href="./rate-quote-window?{{query_path}}">
+      <p class="mb-0">
+        <i class="my-nav-item-icon bi bi-house-door-fill black align-self-center" style="cursor:pointer;"></i>
+      </p>
+    </a>
+<!--     <a class="my-nav-item mx-4 text-dark" href="./rate-customer?{{query_path}}">
+      <p class="mb-0">
+        Quick Rate
+      </p>
+    </a>
+    <a class="my-nav-item text-dark" href="./quote-customer?{{query_path}}">
+      <p class="mb-0">
+        Formal Quote
+      </p>
+    </a> -->
+  </div>
+</nav>
+
+<div class="px-4 pt-2 pb-2">
+  <div>
+    <form action="./quote-create?{{query_path}}" method="post" id="create-lead" onsubmit="submitForm(event)" novalidate>
+      <div>
+        <div class="p-3 bg-custom text-dark rounded">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="orgSearch" class="form-label">Organization<span class="required">*</span></label>
+                <input type="text" class="form-control" id="orgSearch" name="org" placeholder="Type to Search" required>
+                <div class="spinner-container-org-quote" id="orgSearchSpinner"></div>
+              </div>
+            </div>
+          </div>
+            <div class="row mt-2">
+              <div class="col-12">
+              <div class="form-group">
+                <label for="personSearch" class="form-label">Person<span class="required">*</span></label>
+                <input class="form-control" id="personSearch" name="person" placeholder="Type to Search" required>
+                <div class="spinner-container-person-quote" id="personSearchSpinner"></div>
+              </div>
+            </div>
+            </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="personPhone" class="form-label">Person Phone</label>
+                <input class="form-control" id="personPhone" name="person_phone" placeholder="">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="personEmail" class="form-label">Person Email<span class="required">*</span></label>
+                <input type="email" class="form-control" id="personEmail" name="person_email" placeholder="" required>
+              </div>
+            </div>
+          </div>
+        </div>
+         
+      <div class="row mt-2">
+        <div class="col-12">
+          <button id="submit-button" type="submit" class="btn btn-primary btn-md submit-button w-100">
+            <span>Start Quote</span>
+          </button>
+        </div>
+        <div class="col-12">
+            
+        </div>
+      </div>  
+        <input type="hidden" class="form-control" id="orgId" name="orgId">
+        <input type="hidden" class="form-control" id="personId" name="personId">
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/create_lead.js"></script>
+
+<script>
+  (async function() { const sdk = await new AppExtensionsSDK().initialize();
+  await sdk.execute(AppExtensionsSDK.Command.RESIZE, { width: 800, height: 385 }); 
+   })();
+</script>
